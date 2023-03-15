@@ -1,0 +1,82 @@
+
+\documentclass{beamer}
+
+\usepackage{graphicx}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{03 - Handle data and preprocessing}
+\author{Maxime Ellerbach}
+\date{March 2023}
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Data}
+    Can be pretty much anything
+    \begin{itemize}
+        \item Scalar
+        \item Image
+        \item Vector
+        \item Sequences
+        \item Categories
+        \item \ldots
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Preprocessing and encoding}
+    In order for the model to understand the data, it must be encoded in a certain way
+    \begin{itemize}
+        \item floats (could also be int8 depending of the quantization)
+        \item usually normalized between 0 and 1
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Preprocessing and encoding - Classification example}
+    Let's consider the following input data:
+    \begin{itemize}
+        \item Image of a number - shape: (28,28,1)
+    \end{itemize}
+    output data (Label):
+    \begin{itemize}
+        \item class of the number - 0, 1, 2, ... 9
+    \end{itemize}
+    
+    How to encode this into something the model could understand ?
+\end{frame}
+
+\begin{frame}{Preprocessing and encoding - Classification example}
+    \begin{itemize}
+        \item Image : normalize the pixels (if not already) then transform the 3D array into 1D - from (28,28,1) to (784). We could imagine to have more data preprocessing: apply some filters, \ldots
+        \item Label : transform the number into a one-hot encoded array
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{One hot encoding}
+    \begin{itemize}
+    \item Dataset
+    \begin{itemize}
+        \item Image\_of\_2 - [0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+        \item Image\_of\_9 - [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+        \item \ldots
+        \item Image\_of\_6 - [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+    \end{itemize}
+
+    \item Output shape of the model is then: (10,)
+
+    \item During the inference process, we take the maximum value predicted eg: [0, 0, 0, 0.72, 0, 0, 0, 0, 0.28, 0], would mean the model predicted most likely a 3.
+    
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Practice 01 - Data Preprocessing}
+    
+\end{frame}
+
+
+\end{document}

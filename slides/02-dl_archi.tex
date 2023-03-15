@@ -1,0 +1,109 @@
+
+\documentclass{beamer}
+
+\usepackage{graphicx}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{02 - Different Approaches, Layers and Architectures}
+\author{Maxime Ellerbach}
+\date{March 2023}
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+\begin{frame}{End-to-End Philosophy}    
+    \begin{itemize}
+    \item Entire system is learned directly from input data without relying on hand-crafted features or intermediate representations.
+    \item The model architecture typically consists of:
+    \begin{itemize}
+    \item a feature extractor, could be a CNN as well as a regular NN (extract features from data such as images, lidar, and so on).
+    \item a decision-making part: uses the features extracted to make a prediction (e.g. steering, throttle, braking).
+    \end{itemize}
+    \item Not reliable in some edge cases it has never seen.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Modular Philosophy}
+    \begin{itemize}
+    \item The problem is decomposed into multiple sub-problems, easier to tackle separately
+    \item Each model solves only part of the problem. could be extracting a precise feature: lanes, road signs or handling collision detection.
+    \item Need to interpret and filter the output data of each model to give to the next model and / or produce actions.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Lots of Layers}
+    \begin{itemize}
+        \item Fully Connected Layers (Dense)
+        \item Convolutional Layers (Conv)
+        \item Recurrent layers
+        \item Pooling layers
+        \item Regularization
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{Dense Layers}
+    Dense layers, also known as fully connected layers, are the simplest and most common type of layer in deep learning.
+    \begin{itemize}
+        \item used to transform the input data by applying a linear transformation followed by a non-linear activation function 
+        \item not so great to learn to recognize feature
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Convolutional Layers}
+    \begin{itemize}
+        \item Typically used in computer vision tasks
+        \item apply a set of filters to the input data and convolves them to generate a new set of features map. The filters are learned through the backprop
+        \item Can be 1D / 2D / 3D - signal filtering
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Recurrent Layers}
+    Recurrent layers are used in sequence modeling tasks, such as natural language processing and speech recognition. They maintain a state vector that is updated at each time step and fed as input to the next time step. This allows the network to model dependencies between sequential data points and capture long-term context. Recurrent layers can be stacked to create deep recurrent neural networks, which can handle complex sequences with multiple levels of abstraction.
+\end{frame}
+
+\begin{frame}{Pooling Layers}
+    Not really used anymore in CNNs.
+    \begin{itemize}
+        \item Reduce spatial size of the feature maps.
+        \item exists in multiple form: Average Pooling, Max Pooling, Global Av / Max Pooling.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Regularization Layers}
+    Regularization layers are really useful to tackle the issue of overfitting and biases in the model
+    \begin{itemize}
+        \item Dropout : Randomly drop out a certain percentage of the previous layer's activation. It is used only during the training process, it is disabled while testing the neural network.
+        \item L1 / L2: Adds a penalty term to the loss in function of the weights values. This encourages the weights to be small and with low variance, which can prevent the network from overfitting.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Lots of Architectures}
+\begin{itemize}    
+    \item \textbf{Convolutional Neural Networks (CNNs)}: Designed for processing data with a grid-like topology, such as images. Uses convolutional layers to learn local features. 
+    
+    \item \textbf{Recurrent Neural Networks (RNNs)}: Designed for processing sequential data, such as time series or natural language. Use recurrent connections to maintain state information over time.
+    
+    \item \textbf{Long Short-Term Memory (LSTM) Networks}: RNN that can learn long-term dependencies by selectively remembering and forgetting information.
+    
+    \item \textbf{Autoencoder Networks}: Encoder - compress data into a small latent ; Decoder - maps the latent representation back to original data \textbf{(non supervised)}
+    
+    \item \textbf{Generative Adversarial Networks (GANs)}: Adversarial network to generate fake data \textbf{(non supervised)}
+    
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+    
+\end{frame}
+
+
+\end{document}

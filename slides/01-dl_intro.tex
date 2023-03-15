@@ -1,0 +1,69 @@
+
+\documentclass{beamer}
+
+\usepackage{graphicx}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{01 - DeepLearning Introduction}
+\author{Maxime Ellerbach}
+\date{March 2023}
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+\begin{frame}{Deep Learning}
+    \begin{itemize}
+    \item Deep learning is a subset of machine learning that involves training artificial neural networks to learn from data.
+    \item It is inspired by the structure and function of the human brain.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Neural Networks}
+    \begin{itemize}
+    \item Neural networks are mathematical models composed of layers.
+    \item Different kind of layers: Fully Connected, Convolution, LSTMs, ...
+    \item The input layer receives encoded data, such as images, text, or sound, and the output layer produces a "prediction" based on the input data.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Applications}
+    \begin{itemize}
+    \item Deep learning is particularly effective in tasks such as:
+    \begin{itemize}
+    \item Image recognition
+    \item Speech recognition
+    \item Natural language processing
+    \item Closed environment games
+    \end{itemize}
+    \item Traditional machine learning approaches struggle in these tasks due to the complexity and variability of the input data.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Training}
+    \begin{itemize}
+    \item Training a deep neural network involves feeding it with large amounts of labeled data.
+    \item The network adjusts its weights and biases to minimize the error between its predictions and the true labels.
+    \item This process is typically done through a technique called backpropagation which uses the chain rule of calculus to compute the gradients of the error with respect to the network parameters.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Training Approaches}
+    \begin{itemize}
+    \item Two main approaches to training deep neural networks: supervised and unsupervised learning.
+    
+    \begin{itemize}
+        \item Supervised learning: network learns from labeled data by minimizing the difference between its predictions and true labels.
+        \item Unsupervised learning: network discovers patterns in unlabeled data by minimizing reconstruction error or maximizing probability of the data given the model.
+    \end{itemize}
+    
+    \item Other approaches: semi-supervised learning and reinforcement learning.
+    \end{itemize}
+\end{frame}
+
+
+\end{document}
