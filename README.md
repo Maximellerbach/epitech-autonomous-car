@@ -7,6 +7,8 @@ Courses for the Epitech Autonomous Car project.
 
 ## Practices
 
+*It is recommended to use python>=3.8*
+
 The content of each practices is in the `practices` folder.
 each practice contains a main.py (where you should write your code) and a test.py.
 To run the tests, you simply need to run the test.py file.

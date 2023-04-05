@@ -1,6 +1,6 @@
 """
 01-data-processing
-To complete
+author: @maximellerbach
 """
 
 import glob

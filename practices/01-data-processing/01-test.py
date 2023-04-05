@@ -12,7 +12,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 data_path = os.path.join(path, 'data')
 
 
-class Test(unittest.TestCase):
+class TestDataProcessing(unittest.TestCase):
     def setUpClass():
         if os.path.exists(data_path):
             paths = glob.glob(os.path.join(data_path, '*'))
