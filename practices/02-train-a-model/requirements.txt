@@ -1,3 +1,5 @@
 numpy
 tensorflow
 matplotlib
+glob2
+opencv-python
