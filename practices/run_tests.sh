@@ -2,7 +2,7 @@
 
 # tests all the practices
 
-for dir in practices/*; do
+for dir in /practices/*; do
     # go into the dir
     cd $dir
     
@@ -10,10 +10,16 @@ for dir in practices/*; do
     chmod +x install.sh
     bash install.sh
 
+    # activate the virtual environment
+    source venv/bin/activate
+
     # test the script
     python test_*.py
 
+    # deactivate the virtual environment
+    deactivate
+
     # cleanup
     rm -rf venv
-    cd ..
+    cd /
 done
