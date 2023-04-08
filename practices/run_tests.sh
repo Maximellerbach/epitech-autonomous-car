@@ -12,6 +12,12 @@ for dir in ./*; do
         chmod +x install.sh
         ./install.sh
 
+        # check the exit code
+        if [ $? -eq 1 ]; then
+            echo "Install failed"
+            exit 1
+        fi
+
         # activate the virtual environment
         source venv/bin/activate
 
@@ -19,9 +25,7 @@ for dir in ./*; do
         python test.py
 
         # check the exit code
-        if [ $? -eq 0 ]; then
-            echo "Test passed"
-        else
+        if [ $? -eq 1 ]; then
             echo "Test failed"
             exit 1
         fi
