@@ -2,7 +2,7 @@
 
 # tests all the practices
 
-for dir in */; do
+for dir in practices/*; do
     # go into the dir
     cd $dir
     
