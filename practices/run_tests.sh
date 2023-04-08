@@ -2,7 +2,7 @@
 
 # tests all the practices
 
-for dir in /practices/*; do
+for dir in practices/*; do
     # go into the dir
     cd $dir
     
@@ -21,5 +21,5 @@ for dir in /practices/*; do
 
     # cleanup
     rm -rf venv
-    cd /
+    cd ../..
 done
