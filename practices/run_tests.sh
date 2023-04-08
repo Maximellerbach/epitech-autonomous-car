@@ -7,6 +7,7 @@ for dir in */; do
     cd $dir
     
     # run the install script
+    chmod +x install.sh
     bash install.sh
 
     # test the script
