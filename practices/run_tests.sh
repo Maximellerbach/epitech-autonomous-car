@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # tests all the practices
-root = $(pwd)
+cd practices
 
-for dir in practices/*; do
+for dir in ./*; do
     # go into the dir
     cd $dir
     
@@ -24,6 +24,6 @@ for dir in practices/*; do
     rm -rf venv
 
     # go back to the root dir
-    cd $root
+    cd ..
 
 done
