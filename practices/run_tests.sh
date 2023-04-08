@@ -7,7 +7,9 @@ for dir in ./*; do
     if [ -d "$dir" ]; then
         echo "Testing $dir"
         cd $dir
-    
+
+        echo "Installing $dir"
+        
         # run the install script
         chmod +x install.sh
         ./install.sh
