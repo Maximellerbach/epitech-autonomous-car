@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # tests all the practices
+root = $(pwd)
 
 for dir in practices/*; do
     # go into the dir
@@ -21,7 +22,8 @@ for dir in practices/*; do
 
     # cleanup
     rm -rf venv
-    ls
-    cd ../..
-    ls
+
+    # go back to the root dir
+    cd $root
+
 done
