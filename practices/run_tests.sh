@@ -21,5 +21,7 @@ for dir in practices/*; do
 
     # cleanup
     rm -rf venv
+    ls
     cd ../..
+    ls
 done
