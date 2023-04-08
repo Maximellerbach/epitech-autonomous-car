@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # tests all the practices
+cd practices
 
-for dir in practices/*; do
+for dir in /*; do
     # go into the dir
     cd $dir
     
@@ -14,12 +15,12 @@ for dir in practices/*; do
     source venv/bin/activate
 
     # test the script
-    python test_*.py
+    python tests.py
 
     # deactivate the virtual environment
     deactivate
 
     # cleanup
     rm -rf venv
-    cd ../..
+    cd ..
 done
