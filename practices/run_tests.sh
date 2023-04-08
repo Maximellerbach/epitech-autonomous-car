@@ -18,6 +18,14 @@ for dir in ./*; do
         # test the script
         python test.py
 
+        # check the exit code
+        if [ $? -eq 0 ]; then
+            echo "Test passed"
+        else
+            echo "Test failed"
+            exit 1
+        fi
+
         # deactivate the virtual environment
         deactivate
 
