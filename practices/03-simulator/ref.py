@@ -1,5 +1,6 @@
 """
 03-simulator
+author: @maximellerbach
 """
 
 import glob

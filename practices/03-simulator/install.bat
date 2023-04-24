@@ -12,6 +12,7 @@ call %venv_name%\Scripts\activate.bat
 REM Install required modules
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install git+https://github.com/tawnkramer/gym-donkeycar
 
 REM Deactivate the virtual environment
 deactivate
