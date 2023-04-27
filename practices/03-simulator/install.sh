@@ -12,7 +12,6 @@ source $venv_name/bin/activate
 # Install required modules
 python -m pip install -q --upgrade pip
 python -m pip install -q -r requirements.txt
-python -m pip install git+https://github.com/tawnkramer/gym-donkeycar
 
 # Deactivate the virtual environment
 deactivate
