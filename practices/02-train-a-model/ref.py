@@ -75,6 +75,7 @@ def build_model() -> tf.keras.Model:
     out = tf.keras.layers.Dense(10, activation='softmax')(x)
 
     model = tf.keras.Model(inputs=inp, outputs=out)
+    model.summary()
 
     model.compile(
         optimizer='adam',
