@@ -11,6 +11,7 @@ source $venv_name/bin/activate
 
 # Install required modules
 python -m pip install -q --upgrade pip
+python -m pip install setuptools==58.1.0
 python -m pip install -q -r requirements.txt
 
 # Deactivate the virtual environment
