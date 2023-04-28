@@ -1,10 +1,6 @@
 """
 02-train-a-model
-
-
-import all the necessary libraries
-then build a model
-then train the model
+author: @maximellerbach
 """
 
 import os
