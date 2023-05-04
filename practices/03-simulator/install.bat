@@ -11,7 +11,6 @@ call %venv_name%\Scripts\activate.bat
 
 REM Install required modules
 python -m pip install --upgrade pip
-python -m pip install setuptools==58.1.0
 python -m pip install -r requirements.txt
 
 REM Deactivate the virtual environment

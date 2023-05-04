@@ -54,6 +54,9 @@ class ManualClient(SDClient):
     def on_telemetry(self, json_packet):
         """
         Receives telemetry data from the simulator.
+        decode the image and store it in the image attribute.
+        You can then remove the image from the json_packet.
+        store the telemetry data (json_packet without the image) in the telemetry attribute.
         """
 
         encimg = json_packet["image"]

@@ -36,6 +36,7 @@ class ManualClient(SDClient):
         self.last_received = time.time()
         self.last_processed = self.last_received
 
+        # You can add more handlers here if you want to handle other messages
         self.handlers = {
             "telemetry": self.on_telemetry,
         }
@@ -54,6 +55,10 @@ class ManualClient(SDClient):
     def on_telemetry(self, json_packet):
         """
         Receives telemetry data from the simulator.
+        decode the image (base64) to a numpy array and store it in the image attribute.
+        You can then remove the image from the json_packet.
+        Store the telemetry data (json_packet without the image) in the telemetry attribute.
+        Do not forget to update the last_received attribute.
         """
 
         encimg = json_packet["image"]
@@ -66,14 +71,12 @@ class ManualClient(SDClient):
 
         self.last_received = time.time()
 
-    def await_telemetry(self):
+    def await_telemetry(self, sleep=0.001):
         """
         Waits for a telemetry packet to arrive.
+        You can use self.last_received and self.last_processed to check if a new packet has arrived.
         """
-        while self.last_received == self.last_processed:
-            time.sleep(0.001)
-
-        self.last_processed = self.last_received
+        pass
 
 
     def update(self, steering, throttle):
@@ -84,7 +87,7 @@ class ManualClient(SDClient):
             "msg_type": "control",
             "throttle": throttle.__str__(),
             "steering": steering.__str__(),
-            "brake": "0.0",
+            "brake": "0.0", # you can add a brake command if you want
         }
 
         self.send_now(json.dumps(msg))
@@ -92,21 +95,12 @@ class ManualClient(SDClient):
     def get_manual_controls(self):
         """
         Gets manual controls from the keyboard.
-        This is a really simple implementation, and it's not very good.
         """
 
         steering = 0.0
         throttle = 0.0
 
-        if keyboard.is_pressed('w'):
-            throttle += 0.3
-        elif keyboard.is_pressed('s'):
-            throttle += -0.3
-
-        if keyboard.is_pressed('a'):
-            steering += -1.0
-        if keyboard.is_pressed('d'):
-            steering += 1.0
+        # TODO
 
         return steering, throttle
 
@@ -130,20 +124,8 @@ class ManualClient(SDClient):
 
             # recording 
             if keyboard.is_pressed('space'):
-                labels = self.telemetry.copy()
-                labels["steering"] = steering
-                labels["throttle"] = throttle                
-
-                # save image
-                recording_time = time.time()
-                image_path = os.path.join(self.data_path, f"{recording_time}.png")
-                image = cv2.resize(self.image, (160, 120))
-                cv2.imwrite(image_path, image)
-
-                # save labels
-                labels_path = os.path.join(self.data_path, f"{recording_time}.json")
-                with open(labels_path, 'w') as f:
-                    json.dump(labels, f)
+                # save image along with the telemetry + controls
+                pass
 
             # manual controls
             self.update(steering, throttle)
