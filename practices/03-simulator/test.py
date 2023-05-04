@@ -1,7 +1,3 @@
-try:
-    import ref as main
-except ImportError:
-    import main
 
 import unittest
 import os
