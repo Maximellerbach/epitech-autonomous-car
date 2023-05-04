@@ -1,5 +1,4 @@
 numpy
 glob2
 opencv-python
-setuptools==65.5.0
 git+https://github.com/tawnkramer/gym-donkeycar
