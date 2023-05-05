@@ -298,6 +298,8 @@ class ManualClient(SDClient):
             self.await_telemetry()
             steering, throttle = self.get_manual_controls()
 
+            print(steering, throttle)
+
             # recording
             if keyboard.is_pressed('space'):
                 labels = self.telemetry.copy()
