@@ -20,7 +20,7 @@ import numpy as np
 
 # from gym_donkeycar.core.client import SDClient
 
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def replace_float_notation(string: str) -> str:
