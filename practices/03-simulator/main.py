@@ -8,6 +8,7 @@ import glob
 import json
 import logging
 import os
+import re
 import select
 import socket
 import time
@@ -44,6 +45,7 @@ def replace_float_notation(string: str) -> str:
             string = string.replace(match.group("num"), num)
     return string
 
+
 class SDClient:
     """
     SDClient
@@ -56,6 +58,7 @@ class SDClient:
 
     Author: Tawn Kramer
     """
+
     def __init__(self, host: str, port: int, poll_socket_sleep_time: float = 0.001):
         self.msg = None
         self.host = host
@@ -127,7 +130,8 @@ class SDClient:
             time.sleep(self.poll_socket_sleep_sec)
             try:
                 # test our socket for readable, writable states.
-                readable, writable, exceptional = select.select(inputs, outputs, inputs)
+                readable, writable, exceptional = select.select(
+                    inputs, outputs, inputs)
 
                 for s in readable:
                     try:
@@ -148,7 +152,7 @@ class SDClient:
                     n0 = localbuffer.find("{")
                     n1 = localbuffer.rfind("}\n")
                     if n1 >= 0 and 0 <= n0 < n1:  # there is at least one message :
-                        msgs = localbuffer[n0 : n1 + 1].split("\n")
+                        msgs = localbuffer[n0: n1 + 1].split("\n")
                         localbuffer = localbuffer[n1:]
 
                         for m in msgs:
@@ -239,7 +243,6 @@ class ManualClient(SDClient):
         """
         pass
 
-
     def update(self, steering, throttle):
         """
         Sends control commands to the simulator.
@@ -248,7 +251,7 @@ class ManualClient(SDClient):
             "msg_type": "control",
             "throttle": throttle.__str__(),
             "steering": steering.__str__(),
-            "brake": "0.0", # you can add a brake command if you want
+            "brake": "0.0",  # you can add a brake command if you want
         }
 
         self.send_now(json.dumps(msg))
@@ -264,7 +267,6 @@ class ManualClient(SDClient):
         # TODO
 
         return steering, throttle
-
 
     def main_loop(self):
         """
@@ -283,14 +285,14 @@ class ManualClient(SDClient):
             self.await_telemetry()
             steering, throttle = self.get_manual_controls()
 
-            # recording 
+            # recording
             if keyboard.is_pressed('space'):
                 # TODO: save image along with the telemetry + controls
                 pass
 
             # manual controls
             self.update(steering, throttle)
-                    
+
 
 if __name__ == '__main__':
     current_path = os.path.dirname(os.path.abspath(__file__))
