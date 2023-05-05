@@ -3,22 +3,6 @@
 author: @maximellerbach
 """
 
-import glob
-import logging
-import os
-import time
-import json
-import base64
-
-import cv2
-import numpy as np
-import keyboard
-
-from gym_donkeycar.core.client import SDClient
-
-logging.basicConfig(level=logging.INFO)
-
-
 import base64
 import glob
 import json
