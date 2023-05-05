@@ -62,14 +62,7 @@ class ManualClient(SDClient):
         """
 
         encimg = json_packet["image"]
-        image = np.frombuffer(base64.b64decode(encimg), np.uint8)
-        image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-
-        self.image = image
-        del json_packet["image"]
-        self.telemetry = json_packet
-
-        self.last_received = time.time()
+        # TODO
 
     def await_telemetry(self, sleep=0.001):
         """
@@ -124,7 +117,7 @@ class ManualClient(SDClient):
 
             # recording 
             if keyboard.is_pressed('space'):
-                # save image along with the telemetry + controls
+                # TODO: save image along with the telemetry + controls
                 pass
 
             # manual controls
