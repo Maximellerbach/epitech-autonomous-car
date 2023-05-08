@@ -1,4 +1,3 @@
-
 """
 SDClient
 
@@ -9,8 +8,18 @@ The server will reply with telemetry and other status messages in an
 asynchronous manner.
 
 Author: Tawn Kramer
-
 """
+
+import logging
+import re
+import select
+import socket
+import time
+from threading import Thread
+from typing import Any, Dict
+
+logger = logging.getLogger(__name__)
+
 
 def replace_float_notation(string: str) -> str:
     """
@@ -166,4 +175,3 @@ class SDClient:
                 self.aborted = True
                 self.on_msg_recv({"msg_type": "aborted"})
                 break
-

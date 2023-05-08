@@ -4,20 +4,13 @@ author: @maximellerbach
 """
 
 import base64
-import glob
 import json
 import logging
 import os
-import re
-import select
-import socket
-import time
-from threading import Thread
-from typing import Any, Dict
 
 import cv2
-import keyboard
 import numpy as np
+from sdclient import SDClient
 
 from sdclient import SDClient
 
