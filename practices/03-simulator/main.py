@@ -7,11 +7,11 @@ import base64
 import json
 import logging
 import os
+import time
 
 import cv2
+import keyboard
 import numpy as np
-from sdclient import SDClient
-
 from sdclient import SDClient
 
 logger = logging.getLogger(__name__)
