@@ -41,6 +41,9 @@ class DataGenerator(Sequence):
 
         Raises:
             ValueError: directory should be non-empty
+
+        Be carefull to check that the number of images and json files match !
+        You can also check that the name of the images and json files match.
         """
         self.transform_funcs = transform_funcs
 

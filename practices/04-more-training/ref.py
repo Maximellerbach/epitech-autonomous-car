@@ -3,8 +3,10 @@
 author: @maximellerbach
 """
 
+import glob
 import os
 
+import cv2
 import numpy as np
 import tensorflow as tf
 from ref_utils import DataGenerator, flip, noise
@@ -95,15 +97,48 @@ def train_model(model, datagen: DataGenerator, epochs=10):
 
 
 def load_model(model_path):
+    """"Simply load the model."""
     return tf.keras.models.load_model(model_path)
+
+
+def predict(model, data_path):
+    """
+    Predict the steering angle for each image in the data_path.
+    You can sort the images by name (date) to get the correct order then play the images as a video.
+
+    hint: you can use cv2 to display the images
+    You can also draw a visualisation of the steering angle on the image.
+    """
+
+    def sort_func(x):
+        return float(x.split(os.path.sep)[-1].split(".")[0])
+
+    img_paths = sorted(glob.glob(os.path.join(
+        data_path, "*.png")), key=sort_func)
+
+    for path in img_paths:
+        img = cv2.imread(path)
+        img = cv2.resize(img, (160, 120))
+        x = img / 255.0
+        x = np.expand_dims(x, axis=0)
+        pred = model(x)[0][0]
+
+        # draw horizontal line
+        cv2.line(img, (80, 110), (int(80 + pred * 40), 110), (0, 0, 255), 4)
+
+        # display image
+        cv2.imshow("img", img)
+        cv2.waitKey(1)
 
 
 if __name__ == "__main__":
     model = build_model()
 
     # if you have not implemented any transform funcs yet, just put an empty list []
-    datagen = DataGenerator(data_path, [noise, flip])
+    datagen = DataGenerator(data_path, [], batch_size=32)
 
-    train_model(model, datagen, epochs=20)
+    # if the traning takes too much time, you can try to reduce the batch_size and the number of epochs
+    train_model(model, datagen, epochs=5)
 
-    model.save("model.h5")
+    model.save("trained_model.h5")
+    predict(model, data_path)
