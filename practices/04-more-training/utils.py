@@ -59,24 +59,7 @@ class DataGenerator(Sequence):
         X = []
         Y = []
 
-        samples = np.random.randint(0, self.length, size=self.batch_size)
-
-        for sample in samples:
-            img_p, json_p = self.image_paths[sample], self.json_paths[sample]
-            image, json_data = load_image_and_json(img_p, json_p)
-
-            # apply the transform functions (data augmentation)
-            for func in self.transform_funcs:
-                image, json_data = func(image, json_data)
-
-            # append image to list X label to list Y
-            # If you have more than 1 output, this part can become tricky !
-            X.append(image)
-            Y.append(json_data["steering"])
-
-        # transform X and Y into numpy arrays, normalize X
-        X = np.array(X) / 255.0
-        Y = np.array(Y)
+        # TODO
 
         return X, Y
 
