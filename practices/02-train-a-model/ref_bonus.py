@@ -17,7 +17,7 @@ def predict_from_path(image_path, model) -> int:
     x = x / 255.0
 
     # predict
-    pred = model.predict(x)
+    pred = model.predict(x) # <- [0, 0, ..., 1.0]
     prediction = np.argmax(pred)
 
     plt.imshow(image)
