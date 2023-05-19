@@ -37,6 +37,9 @@ class ManualClient(SDClient):
         self.handlers = {
             "telemetry": self.on_telemetry,
         }
+        
+        self.steering = 0.0
+        self.throttle = 0.0
 
     def on_msg_recv(self, json_packet):
         """
@@ -92,23 +95,34 @@ class ManualClient(SDClient):
     def get_manual_controls(self):
         """
         Gets manual controls from the keyboard.
-        This is a really simple implementation, and it's not very good.
+        The changes in steering and throttle should be continuous.
+        When no key is pressed, the steering and throttle should change slowly back to 0.   
         """
 
-        steering = 0.0
-        throttle = 0.0
+        steps = 0.2
+        decay = 0.5
 
-        if keyboard.is_pressed('w'):
-            throttle += 0.3
-        elif keyboard.is_pressed('s'):
-            throttle += -0.3
+        max_steering = 0.75
+        max_throttle = 0.7
 
         if keyboard.is_pressed('a'):
-            steering += -1.0
-        if keyboard.is_pressed('d'):
-            steering += 1.0
+            self.steering -= steps
+        elif keyboard.is_pressed('d'):
+            self.steering += steps
+        else:
+            self.steering = self.steering * decay
+        
+        if keyboard.is_pressed('w'):
+            self.throttle += steps
+        elif keyboard.is_pressed('s'):
+            self.throttle -= steps
+        else:
+            self.throttle = self.throttle * decay
 
-        return steering, throttle
+        self.steering = np.clip(self.steering, -max_steering, max_steering)
+        self.throttle = np.clip(self.throttle, -max_throttle, max_throttle)
+
+        return self.steering, self.throttle
 
     def main_loop(self):
         """
@@ -127,7 +141,7 @@ class ManualClient(SDClient):
             self.await_telemetry()
             steering, throttle = self.get_manual_controls()
 
-            print(steering, throttle)
+            # print(steering, throttle)
 
             # recording
             if keyboard.is_pressed('space'):
